@@ -29,8 +29,27 @@
     .\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic setup_test --from-beginning
     
 ## Producer Consumer Example
+  In order to Produce Consumer example follow the below steps
+  - Start the Zookeeper (follow the steps from above)
+  - Start the Kafka (follow the steps from above)
   - Start spring-boot-apache-kafka-producer project
-  - Create Topic
+  - Create a Topic "demo" by running the following cmd in command prompt
     .\bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic demo
   - Start spring-boot-apache-kafka-consumer project
-  - Send the message using the endpoint.
+  - Send the message using the postman 
+    - URL : http://localhost:8082/users
+    - Method : POST
+    - Request Body : 
+      {
+        "name" : "John Doe",
+        "department" : "Administration",
+        "salary" : 85150.64
+      }
+   - You should see the message received in Consumer console.
+   - In addition to above steps we can configure one more Topic and Producer through command prompt
+   - Create Topic using the following command
+      - .\bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic example
+   - Create Producer from Command Prompt
+      - .\bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic example
+   - Now you can send the message from command prompt Producer also to the consumer console. 
+   
