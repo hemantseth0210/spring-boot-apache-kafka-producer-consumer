@@ -2,6 +2,8 @@
 
 ## Apache Kafka Configuration
 
+To download and install Kafka, please refer to the official guide here https://kafka.apache.org/quickstart.
+
 ###  Download and Install
   - Go to the download page of Apache Kafka
     https://kafka.apache.org/downloads
