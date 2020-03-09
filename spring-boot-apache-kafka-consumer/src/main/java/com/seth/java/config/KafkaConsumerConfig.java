@@ -30,7 +30,7 @@ public class KafkaConsumerConfig {
 	public ConsumerFactory<String, String> consumerFactory(){
 		Map<String, Object> configs = new HashMap<>();
 		configs.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
-		configs.put(ConsumerConfig.GROUP_ID_CONFIG, "group_id");
+		configs.put(ConsumerConfig.GROUP_ID_CONFIG, "group_string");
 		configs.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
 		configs.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
 		return new DefaultKafkaConsumerFactory<>(configs);

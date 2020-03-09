@@ -15,7 +15,7 @@ import com.seth.java.domain.User;
 @Service
 public class Receiver {
 
-	@KafkaListener(topics = "demo", groupId = "group_id")
+	@KafkaListener(topics = "example", groupId = "group_string")
 	public void consume(String message) {
 		System.out.println("Consumed Message : "+ message);
 	}
