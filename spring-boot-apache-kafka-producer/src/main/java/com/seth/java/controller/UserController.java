@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.seth.java.domain.User;
-import com.seth.java.service.Sender;
+import com.seth.java.service.MessageProducer;
 
 /**
  * @author heseth
@@ -23,17 +23,31 @@ import com.seth.java.service.Sender;
 public class UserController {
 	
 	@Autowired
-	Sender sender;
+	MessageProducer messageProducer;
 	
-	/*
-	 * @GetMapping("/publish/{name}") public String
-	 * publishMessage(@PathVariable(name = "name") String name) {
-	 * sender.send("Hi !! "+ name); return "Published Successfully"; }
-	 */
+	
+	@GetMapping("/publish/{message}") 
+	public String publishMessage(@PathVariable(name = "message") String message) {
+		messageProducer.sendMessage(message); 
+		return "Published Successfully"; 
+	}
+	
+	@GetMapping("/publish/{message}/partition/{partition}") 
+	public String publishPartitionMessage(@PathVariable(name = "message") String message, @PathVariable(name = "partition") int partition) {
+		messageProducer.sendMessageToPartion(message, partition); 
+		return "Published Successfully"; 
+	}
+	
+	@GetMapping("/publish/{message}/filter") 
+	public String publishFilterMessage(@PathVariable(name = "message") String message) {
+		messageProducer.sendMessageToFiltered(message); 
+		return "Published Successfully"; 
+	}
+	 
 	
 	@PostMapping
 	public String createUser(@RequestBody User user) {
-		sender.send(user);
+		messageProducer.send(user);
 		return "Published Successfully";
 	}
 

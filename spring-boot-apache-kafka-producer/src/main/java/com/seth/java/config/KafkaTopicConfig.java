@@ -29,7 +29,16 @@ public class KafkaTopicConfig {
 	
 	@Value("${topic.name}")
 	private String topic;
+	
+	@Value(value = "${message.topic.name}")
+	private String messagetopicName;
  
+	@Value(value = "${partitioned.topic.name}")
+    private String partionedTopicName;
+
+    @Value(value = "${filtered.topic.name}")
+    private String filteredTopicName;
+    
     @Bean
     public KafkaAdmin kafkaAdmin() {
         Map<String, Object> configs = new HashMap<>();
@@ -40,5 +49,20 @@ public class KafkaTopicConfig {
     @Bean
     public NewTopic demoTopic() {
          return new NewTopic("demo", 1, (short) 1);
+    }
+    
+    @Bean
+    public NewTopic messageTopic() {
+        return new NewTopic(messagetopicName, 1, (short) 1);
+    }
+
+    @Bean
+    public NewTopic partionedTopic() {
+        return new NewTopic(partionedTopicName, 6, (short) 1);
+    }
+
+    @Bean
+    public NewTopic filteredTopic() {
+        return new NewTopic(filteredTopicName, 1, (short) 1);
     }
 }
